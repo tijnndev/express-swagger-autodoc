@@ -214,14 +214,14 @@ function extractRoutes(app, routeMetadata) {
   }
 }
 
-export function overrideAppMethods(app, routeMetadata) {
+export function overrideAppMethods(appOrRouter, routeMetadata, prefix = '') {
   const methods = ['get', 'post', 'put', 'delete', 'patch', 'options', 'head']
   const originalMethods = {}
 
   methods.forEach(method => {
-    originalMethods[method] = app[method].bind(app)
+    originalMethods[method] = appOrRouter[method].bind(appOrRouter)
 
-    app[method] = (path, ...handlers) => {
+    appOrRouter[method] = (path, ...handlers) => {
       let inputModel = null
 
       if (
@@ -233,7 +233,8 @@ export function overrideAppMethods(app, routeMetadata) {
         inputModel = handlers.pop()
       }
 
-      const swaggerPath = path.replace(/:([^/]+)/g, '{$1}')
+      const fullPath = `${prefix}${path}`
+      const swaggerPath = fullPath.replace(/:([^/]+)/g, '{$1}')
       routeMetadata[`${method.toLowerCase()} ${swaggerPath}`] = inputModel || {}
 
       return originalMethods[method](path, ...handlers)
