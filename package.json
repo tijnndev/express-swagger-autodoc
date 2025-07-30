@@ -1,0 +1,19 @@
+{
+  "name": "express-swagger-autodoc",
+  "version": "1.0.1",
+  "description": "Auto-generate Swagger UI for Express routes without annotations",
+  "main": "index.js",
+  "type": "module",
+  "keywords": [
+    "express",
+    "swagger",
+    "autodoc",
+    "openapi",
+    "swagger-ui"
+  ],
+  "author": "tijnndev",
+  "license": "MIT",
+  "dependencies": {
+    "swagger-ui-express": "^5.0.0"
+  }
+}
