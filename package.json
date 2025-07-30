@@ -1,6 +1,6 @@
 {
   "name": "express-swagger-autodoc",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Auto-generate Swagger UI for Express routes without annotations",
   "main": "index.js",
   "type": "module",
