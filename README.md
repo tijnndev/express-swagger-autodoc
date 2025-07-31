@@ -37,6 +37,12 @@ const routeMetadata = {}
 // Override app HTTP methods to capture route metadata
 overrideAppMethods(app, routeMetadata)
 
+// If you defer a router like the following example:
+// app.use("/customers", customerRouter);
+// Please make sure that you override the AppMethods for the router before you call the app.use()
+// 3rd value is the prefix for the corresponding tag and prefix in routes
+// overrideAppMethods(productRouter, routeMetadata, '/products')
+
 // Define routes as usual, but to specify request body or query parameters,
 // you **must add the metadata object as the last argument** after the handler function.
 // The `params` field for path parameters is optional since path params are inferred automatically.
